@@ -17,9 +17,14 @@ int main(void)
 	{
 		for (j = 48; j < 57; j++)
 		{
+
 			for (a = i; a < 58; a++)
 			{
-				for (b = j + 1 ; b < 58; b++)
+				/*
+				 *identify initial value of the second digit
+				 *of the second number
+				 */
+				for (b = a == i ? j + 1 : 48 ; b < 58; b++)
 				{
 					putchar(i);
 					putchar(j);
