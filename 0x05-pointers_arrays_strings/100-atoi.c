@@ -10,7 +10,7 @@ int _atoi(char *s)
 {
 	int j = 0;
 	char sn = '+';
-	int long num = 0;
+	int num = 0;
 
 	while (*(s + j) != '\0')
 	{
@@ -24,7 +24,7 @@ int _atoi(char *s)
 				j++;
 			}
 			num = (sn == '-') ? (num * -1) : num;
-			return (num);
+			return ((unsigned)num);
 		}
 		j++;
 	}
