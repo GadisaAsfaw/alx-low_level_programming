@@ -24,7 +24,7 @@ int _atoi(char *s)
 				j++;
 			}
 			num = (sn == '-') ? (num * -1) : num;
-			return ((unsigned)num);
+			return (num);
 		}
 		j++;
 	}
