@@ -15,51 +15,38 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	int mx = (ln1 >= ln2) ? ln1 : ln2;
 	int mn = (ln1 <= ln2) ? ln1 : ln2;
 	int c = 0;
-	int sum_len = mx;
+	int i;
 
 	if (ln1 >= size_r || ln2 >= size_r)
-	{
 		return (0);
-	}
-	else
+	for (i = 0; i < mx; i++)
 	{
-		int i;
-
-		for (i = 0; i < mx; i++)
+		if (i < mn)
 		{
-			if (i < mn)
-			{
-				*(r + i) = ((((*(n1 + ln1 - 1 - i) + *(n2 + ln2 - 1 - i)) - 96) + c) % 10) + '0';
-				c =  ((*(n1 + ln1 - 1 - i) + *(n2 + ln2 - 1 - i) - 96) + c) / 10;
-			}
-			else if (i >= mn && ln2 > ln1)
-			{
-				*(r + i) = (((*(n2 + ln2 - 1 - i) - 48) + c) % 10) + '0';
-				c = ((*(n2 + ln2 - 1 - i) - 48) + c) / 10;
-			}
-			else if (i >= mn && ln1 > ln2)
-			{
-				*(r + i) = (((*(n1 + ln1 - 1 - i) - 48) + c) % 10) + '0';
-				c = ((*(n1 + ln1 - 1 - i) - 48) + c) / 10;
-			}
-
-
+			r[i] = ((((n1[ln1 - 1 - i] + n2[ln2 - 1 - i]) - 96) + c) % 10) + '0';
+			c = ((n1[ln1 - 1 - i] + n2[ln2 - 1 - i] - 96) + c) / 10;
 		}
-		/*
-		 *if there is carry
-		 */
-		if (c > 0)
+		else if (i >= mn && ln2 > ln1)
 		{
-			if (i >= size_r - 1)
-				return (0);
-			*(r + i) = c + '0';
-			*(r + i + 1) = '\0';
-			sum_len += 1;
+			r[i] = (((n2[ln2 - 1 - i] - 48) + c) % 10) + '0';
+			c = ((n2[ln2 - 1 - i] - 48) + c) / 10;
 		}
-		else
-			*(r + i) = '\0';
+		else if (i >= mn && ln1 > ln2)
+		{
+			r[i] = (((n1[ln1 - 1 - i] - 48) + c) % 10) + '0';
+			c = ((n1[ln1 - 1 - i] - 48) + c) / 10;
+		}
 	}
-	rev_string(r, sum_len);
+		/*if there is carry*/
+	if (c > 0)
+	{
+		if (i >= size_r - 1)
+			return (0);
+		r[i] = c + '0';
+		mx += 1;
+	}
+	r[mx] = '\0';
+	rev_string(r, mx);
 	return (r);
 }
 
