@@ -9,10 +9,8 @@
 */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int i, dl;
+	int i;
 	int end = 0;
-
-	dl = _strlen(dest);
 
 	for (i = 0; i < n; i++)
 	{
@@ -23,7 +21,6 @@ char *_strncpy(char *dest, char *src, int n)
 		else
 			*(dest + i) = '\0';
 	}
-	*(dest + dl + i) = '\0';
 	return (dest);
 
 }
