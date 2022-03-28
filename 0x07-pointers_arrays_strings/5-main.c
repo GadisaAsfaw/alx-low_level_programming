@@ -8,7 +8,7 @@
  */
 int main(void)
 {
-    char *s = "hello, world";
+    char *s = "hello, worlt gadwo asworldafter";
     char *f = "world";
     char *t;
 
