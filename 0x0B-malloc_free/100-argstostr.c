@@ -28,8 +28,8 @@ char *argstostr(int ac, char **av)
 		arr_of_strlen[i] = _strlen(av[i]);
 		newstrlen += arr_of_strlen[i];
 	}
-	/*for the new line(\n) char*/
-	newstrlen += ac;
+	/*for the new line(\n) char and null terminator(\0)*/
+	newstrlen += (ac + 1);
 
 	/* allocate space for new string */
 	newstr = (char *)malloc(sizeof(char) * newstrlen);
@@ -50,6 +50,7 @@ char *argstostr(int ac, char **av)
 		newstr[j] = '\n';
 		j++;
 	}
+	newstr[j] = '\0';
 	return (newstr);
 }
 
