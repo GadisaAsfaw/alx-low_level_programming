@@ -24,7 +24,7 @@ char *argstostr(int ac, char **av)
 		newstrlen += _strlen(av[i]);
 	}
 	/*for the new line(\n)*/
-	newstrlen += (ac - 1);
+	newstrlen += ac;
 
 	/* allocate space for new string */
 	newstr = (char *)malloc(sizeof(char) * newstrlen);
@@ -33,7 +33,7 @@ char *argstostr(int ac, char **av)
 
 	/* append char of each argument/string to*/
 	/* to space of new string */
-	for (k = 1; k < ac; k++)
+	for (k = 0; k < ac; k++)
 	{
 		while (*(av[k]) != 0)
 		{
@@ -42,11 +42,8 @@ char *argstostr(int ac, char **av)
 			j++;
 		}
 		/*add new line char to the of each argument/string*/
-		if (k < ac - 1)
-		{
-			newstr[j] = '\n';
-			j++;
-		}
+		newstr[j] = '\n';
+		j++;
 	}
 	return (newstr);
 }
