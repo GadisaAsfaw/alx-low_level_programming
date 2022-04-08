@@ -21,5 +21,5 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	{
 		newmem[i] = 0;
 	}
-	return (newmem);
+	return ((void *)newmem);
 }
