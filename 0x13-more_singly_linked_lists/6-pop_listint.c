@@ -10,7 +10,7 @@ int pop_listint(listint_t **head)
 	int n = 0;
 	listint_t *nh;
 
-	if (head)
+	if (head && (*head))
 	{
 		n = (*head)->n;
 		nh = (*head)->next;
