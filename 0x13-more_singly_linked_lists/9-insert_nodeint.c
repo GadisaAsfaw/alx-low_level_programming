@@ -26,8 +26,8 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		{
 			pre = post;
 			post = post->next;
-			/* idx is greater than or equal to length of the */
-	       	        /* list(its not possible to insert/add) Return NULL*/
+			/*idx is greater than or equal to length of the*/
+			/*list(its not possible to insert/add) Return NULL*/
 			if (post == NULL)
 				return (NULL);
 
