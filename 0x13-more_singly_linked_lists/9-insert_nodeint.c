@@ -16,25 +16,29 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	if (!new_node)
 		return (NULL);
 	new_node->n = n;
-
-	/*check given address is not NULL*/
-	/*and has a value)               */
-	if (head && (*head))
+	if (!head)
+		return (NULL);
+	/*if list is empty or if new insertion is at head/index 0 */
+	if (!(*head) || idx == 0)
 	{
 		post = *head;
-		for (i = 0; i < idx; i++)
-		{
-			pre = post;
-			post = post->next;
-			/*idx is greater than or equal to length of the*/
-			/*list(its not possible to insert/add) Return NULL*/
-			if (post == NULL)
-				return (NULL);
-
-		}
-		if (pre != NULL)
-			pre->next = new_node;
+		*head = new_node;
 		new_node->next = post;
+		return (new_node);
 	}
+
+	post = *head;
+	for (i = 0; i < idx; i++)
+	{
+		/*idx is greater than length of the*/
+		/*list(its not possible to insert/add) Return NULL*/
+		if (post == NULL)
+			return (NULL);
+		pre = post;
+		post = post->next;
+	}
+	if (pre != NULL)
+		pre->next = new_node;
+	new_node->next = post;
 	return (new_node);
 }
