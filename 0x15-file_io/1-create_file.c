@@ -13,21 +13,25 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fd, t, s = 0;
+	int fd, sz_w, str_len = 0;
+	mode_t mode;
 
 	if (!filename)
 		return (-1);
 
-	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
-	if (fd < 0)
+	/*The wr------- permission for the new file.*/
+	mode = S_IRUSR | S_IWUSR;
+	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, mode);
+	if (fd == -1)
 		return (-1);
 
 	if (text_content)
 	{
-		while (text_content[s])
-			s++;
-		t = write(fd, text_content, s);
-		if (t != s)
+		while (text_content[str_len])
+			str_len++;
+		/*sz_w = write(fd,text_content,strlen(text_content));*/
+		sz_w = write(fd, text_content, str_len);
+		if (sz_w == -1 || sz_w != str_len)
 			return (-1);
 	}
 
